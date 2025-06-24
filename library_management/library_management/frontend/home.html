@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PastelPages Library</title>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfcfa;
+      color: #1a1a1a;
+      padding: 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 2px solid #e8d6f1;
+    }
+
+    .nav-left h2 {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-actions a {
+      padding: 0.5rem 1rem;
+      border: 2px solid black;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-black {
+      background-color: black;
+      color: white;
+    }
+
+    .btn-black:hover {
+      background-color: #333;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero span {
+      text-decoration: underline 4px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .hero-buttons a {
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 2px solid black;
+      text-decoration: none;
+    }
+
+    .explore {
+      background-color: black;
+      color: white;
+    }
+
+    .explore:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <h2>PL</h2>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'all_books' %}">All Books</a>
+      <a href="{% url 'add_book' %}">Add Book</a>
+      <a href="{% url 'livredetail' idlivre=1 %}">Detail Book</a>
+      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'register' %}">Register</a>
+    </div>
+    <div class="nav-actions">
+      <a href="{% url 'register' %}">Get Started</a>
+      <a href="{% url 'all_books' %}" class="btn-black">Browse Books</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to <span>PastelPages</span><br /> Library</h1>
+    <p>Discover a world of books in a calming, pastel-themed digital library. <br>
+      Browse our collection and find your next favorite read today!</p>
+    <div class="hero-buttons">
+      <a href="{% url 'all_books' %}" class="explore">Explore Books</a>
+      <a href="{% url 'register' %}">Register Now</a>
+    </div>
+  </section>
+</body>
+
+</html>

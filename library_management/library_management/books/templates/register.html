@@ -1,0 +1,346 @@
+{% load custom_tag %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalipsis Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfcfa;
+      color: #1a1a1a;
+      padding: 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 2px solid #e8d6f1;
+    }
+
+    .nav-left h2 {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-actions a {
+      padding: 0.5rem 1rem;
+      border: 2px solid black;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-black {
+      background-color: black;
+      color: white;
+    }
+
+    .btn-black:hover {
+      background-color: white;
+        color: black;
+    }
+    
+    .logout-btn{
+        all: unset;
+        background-color: black;
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover{
+        background-color: white;
+        color: black;
+    }
+
+    /* Styles de la page d'inscription */
+    .register-container {
+      max-width: 500px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .register-card {
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(138, 94, 191, 0.1);
+      border: 1px solid #e8d6f1;
+    }
+
+    .register-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .register-header h2 {
+      font-size: 2rem;
+      color: #6a4c93;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #4b3b7f;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      border: 2px solid #e8d6f1;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .input-group:focus-within {
+      border-color: #8a5ebf;
+      box-shadow: 0 0 0 3px rgba(138, 94, 191, 0.2);
+    }
+
+ .input-group-text {
+      padding: 0 1rem;
+      color: #6a4c93;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      border-radius: 0 !important;
+    }
+
+    .form-text {
+      font-size: 0.85rem;
+      color: #777;
+      margin-top: 0.3rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background-color: #6a4c93;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background-color: #5a3d7b;
+      transform: translateY(-2px);
+    }
+
+    .register-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      color: #555;
+    }
+
+    .register-footer a {
+      color: #6a4c93;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .register-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+    }
+    .form-btn {
+        border: none;
+        background: none;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        border-radius: 6px;
+        background-color: #6a4c93;
+        color: white;
+        padding: 0.5rem 1rem;
+   
+    }
+    
+    .form-btn:hover {
+      background-color: #5a3d7b;
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 2px solid #e8d6f1;
+      color: #555;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .footer-links a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #6a4c93;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-left">
+      <h2>Kalipsis</h2>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'all_books' %}">All Books</a>
+      <a href="{% url 'register' %}">Register</a>
+      {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'add_book' %}">Add Book</a>
+          <a href="{% url 'admin_borrow_list' %}">All borrowings</a>
+        {% endif %}
+        {% if not request.user.is_superuser %}
+          <a href="{% url 'user_borrows' %}">My borrowings</a>
+        {%endif%}
+      {%endif%}
+    </div>
+    <div class="nav-actions">
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'user_borrows' %}">{{ request.user.username }}</a>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-black logout-btn">Log Out</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}">Get Started</a>
+        <a href="{% url 'all_books' %}" class="btn-black">Browse Books</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- REGISTER SECTION -->
+  <div class="register-container">
+    <div class="register-card">
+      <div class="register-header">
+        <h2><i class="fas fa-user-plus"></i> S'inscrire</h2>
+        <p>Créez votre compte PastelPages</p>
+      </div>
+      
+      <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div class="input-group">
+              {% if field.name == "username" %}
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              {% elif field.name == "email" %}
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              {% elif field.name == "password1" %}
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              {% elif field.name == "password2" %}
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              {% endif %}
+              {{ field |addclass:"form-control"}}
+            </div>
+            {% if field.help_text %}
+              <small class="form-text">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+              <div class="error-message">{{ error }}</div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+        
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-user-check"></i> Créer mon compte
+        </button>
+      </form>
+
+      <div class="register-footer">
+        Déjà inscrit ? <a href="{% url 'login' %}">Se connecter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Copyright © 2025 Kalipsis. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Terms and Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </footer>
+</body>
+</html>

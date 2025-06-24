@@ -1,0 +1,371 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalipsis Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #fdfcfa;
+      color: #1a1a1a;
+      padding: 0 2rem;
+    }
+
+    /* Styles existants de la nav et footer */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 2px solid #e8d6f1;
+    }
+
+    .nav-left h2 {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-actions a {
+      padding: 0.5rem 1rem;
+      border: 2px solid black;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-black {
+      background-color: black;
+      color: white;
+    }
+
+    .btn-black:hover {
+      background-color: white;
+        color: black;
+    }
+    
+    .logout-btn{
+        all: unset;
+        background-color: black;
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover{
+        background-color: white;
+        color: black;
+    }
+
+     .book-detail-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .book-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .book-header h1 {
+      font-size: 2.5rem;
+      color: #4b3b7f;
+      margin-bottom: 1rem;
+    }
+
+    .book-header p {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .book-content {
+      display: flex;
+      gap: 3rem;
+      background: white;
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(138, 94, 191, 0.1);
+      border: 1px solid #e8d6f1;
+    }
+
+    .book-cover {
+      flex: 0 0 300px;
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .book-info {
+      flex: 1;
+    }
+
+    .detail-section {
+      margin-bottom: 2rem;
+    }
+
+    .detail-section h2 {
+      color: #6a4c93;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .detail-section h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #8a5ebf;
+    }
+
+    .detail-item {
+      margin-bottom: 1rem;
+      display: flex;
+    }
+
+    .detail-label {
+      font-weight: 600;
+      color: #4b3b7f;
+      min-width: 150px;
+    }
+
+    .detail-value {
+      color: #555;
+      flex: 1;
+    }
+
+    .features-list {
+      list-style-type: none;
+    }
+
+    .features-list li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .features-list li:before {
+      content: "•";
+      color: #8a5ebf;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: -3px;
+    }
+
+    .back-link {
+      display: inline-block;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #6a4c93;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .back-link:hover {
+      background-color: #5a3d7b;
+      transform: translateY(-2px);
+    }
+    .Borrow-back{
+        display: flex; 
+        gap: 1rem; 
+        margin-top: 2rem;"
+    }
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 2px solid #e8d6f1;
+      color: #555;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .footer-links a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #6a4c93;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-left">
+      <h2>Kalipsis</h2>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'all_books' %}">All Books</a>
+      <a href="{% url 'register' %}">Register</a>
+     {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'add_book' %}">Add Book</a>
+          <a href="{% url 'admin_borrow_list' %}">All borrowings</a>
+        {% endif %}
+        {% if not request.user.is_superuser %}
+          <a href="{% url 'user_borrows' %}">My borrowings</a>
+        {%endif%}
+      {%endif%}
+
+    </div>
+    <div class="nav-actions">
+        {% if request.user.is_authenticated %}
+            {%if not request.user.is_superuser%}
+                <a href="{% url 'user_borrows' %}">{{ request.user.username }}</a>
+            {%else%}
+                <a href="{% url 'admin_borrow_list' %}">{{ request.user.username }}</a>
+            {%endif%}
+        {%else%}
+            <a href="{% url 'login' %}">Get Started</a>
+        {%endif%}
+
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-black logout-btn">Log Out</button>
+            </form>
+        {%else%}
+            <a href="{% url 'all_books' %}" class="btn-black">Browse Books</a>
+        {%endif%}
+    </div>
+  </nav>
+
+  <!-- BOOK DETAIL SECTION -->
+  <div class="book-detail-container">
+    <div class="book-header">
+        <h1>{{ livre.title }}</h1>
+    </div>
+
+    <div class="book-content">
+      <div class="book-cover">
+        {% if livre.cover_image %}
+          <img src="{{ livre.cover_image.url }}" alt="Couverture de {{ livre.title }}">
+        {% else %}
+          <div style="background: #e8d6f1; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 12px;">
+            <i class="fas fa-book" style="font-size: 3rem; color: #8a5ebf;"></i>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="book-info">
+        <div class="detail-section">
+          <div class="detail-item">
+            <span class="detail-label">Auteur:</span>
+            <span class="detail-value">{{ livre.author }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Date de publication:</span>
+            <span class="detail-value">{{ livre.published_date }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Éditeur:</span>
+            <span class="detail-value">{{ livre.publisher }}</span>
+          </div>
+        </div>
+
+        <div class="detail-section">
+          <h2>Synopsis</h2>
+          <p>{{ livre.description }}</p>
+        </div>
+
+        <div class="detail-section">
+          <h2>Book Details</h2>
+          <div class="detail-item">
+            <span class="detail-label">ISBN:</span>
+            <span class="detail-value">{{ livre.isbn }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Pages:</span>
+            <span class="detail-value">{{ livre.pages }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Langue:</span>
+            <span class="detail-value">{{ livre.language }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Genre:</span>
+            <span class="detail-value">{{ livre.genre }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Disponibilité:</span>
+            <span class="detail-value">{{ livre.available|yesno:"Disponible,Non disponible" }}</span>
+          </div>
+        </div>
+
+        <div class="Borrow-back">
+            <a href="{% url 'all_books' %}" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Collection
+            </a>
+            {% if livre.available and request.user.is_authenticated and not request.user.is_superuser %}
+            <a href="{% url 'borrow_book' livre.id %}" class="back-link" style="background-color: #8a5ebf;">
+                <i class="fas fa-book-open"></i> Borrow
+            </a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Copyright © 2025 Kalipsis. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Terms and Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </footer>
+</body>
+</html>

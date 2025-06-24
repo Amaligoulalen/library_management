@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalipsis Library</title>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script defer src="{% static 'js/script.js' %}"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fdfcfa;
+      color: #1a1a1a;
+      padding: 0 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 2px solid #e8d6f1;
+    }
+
+    .nav-left h2 {
+      font-size: 1.8rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-actions a {
+      padding: 0.5rem 1rem;
+      border: 2px solid black;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-black {
+      background-color: black;
+      color: white;
+    }
+
+    .btn-black:hover {
+      background-color: white;
+        color: black;
+    }
+    
+    .logout-btn{
+        all: unset;
+        background-color: black;
+        color: white;
+        padding: 0.5em 1em;
+        border-radius: 4px;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-btn:hover{
+        background-color: white;
+        color: black;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      border-bottom: 2px solid #e8d6f1;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero span {
+      text-decoration: underline 4px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #333;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .hero-buttons a {
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      border: 2px solid black;
+      text-decoration: none;
+    }
+
+    .explore {
+      background-color: black;
+      color: white;
+    }
+
+    .explore:hover {
+      background-color: #333;
+    }
+    .mission-values {
+  padding: 4rem;
+  background-color: #f9f6fb;
+}
+
+.mission-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.mission-text {
+  flex: 1 1 500px;
+  max-width: 600px;
+}
+
+.mission-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.mission-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.mission-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.mission-stats h3 {
+  font-size: 1.2rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.mission-stats p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.mission-image {
+  flex: 1 1 400px;
+}
+
+.mission-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      border-top: 2px solid #e8d6f1;
+      color: #555;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .footer-links a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #6a4c93;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-left">
+      <h2>Kalipsis</h2>
+    </div>
+    <div class="nav-links">
+      <a href="{% url 'home' %}">Home</a>
+      <a href="{% url 'all_books' %}">All Books</a>
+      <a href="{% url 'register' %}">Register</a>
+     {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+          <a href="{% url 'add_book' %}">Add Book</a>
+          <a href="{% url 'admin_borrow_list' %}">All borrowings</a>
+        {% endif %}
+        {% if not request.user.is_superuser %}
+          <a href="{% url 'user_borrows' %}">My borrowings</a>
+        {%endif%}
+      {%endif%}
+
+    </div>
+    <div class="nav-actions">
+        {% if request.user.is_authenticated %}
+            {%if not request.user.is_superuser%}
+                <a href="{% url 'user_borrows' %}">{{ request.user.username }}</a>
+            {%else%}
+                <a href="{% url 'admin_borrow_list' %}">{{ request.user.username }}</a>
+            {%endif%}
+        {%else%}
+            <a href="{% url 'login' %}">Get Started</a>
+        {%endif%}
+
+        {% if request.user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-black logout-btn">Log Out</button>
+            </form>
+        {%else%}
+            <a href="{% url 'all_books' %}" class="btn-black">Browse Books</a>
+        {%endif%}
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to <span>Kalipsis</span><br /> Library</h1>
+    <p>Discover a world of books in a calming digital library. <br>
+      Browse our collection and find your next favorite read today!</p>
+    <div class="hero-buttons">
+      <a href="{% url 'all_books' %}" class="explore">Explore Books</a>
+      <a href="{% url 'register' %}">Register Now</a>
+    </div>
+  </section>
+  <section class="mission-values">
+  <div class="mission-container">
+    <div class="mission-text">
+      <h2>Our Mission & Values</h2>
+      <p>
+        At PastelPages, we aim to create a peaceful online space where book lovers can explore a vast collection of titles in a calming environment. We are committed to promoting literacy, accessibility, and user satisfaction, ensuring everyone can enjoy the pleasure of reading.
+      </p>
+      <div class="mission-stats">
+       <div>
+        <h3>User-focused design</h3>
+        <p>Built with simplicity and comfort in mind, our interface helps readers focus on what truly matters: the joy of discovering great books.</p>
+      </div>
+        <div>
+          <h3>Accessible 24/7</h3>
+          <p>Our library is always open — explore our digital shelves anytime, from anywhere, and discover something new whenever inspiration strikes.</p>
+        </div>
+        <div>
+          <h3>Growing collection</h3>
+          <p>We’re continuously adding new titles to our catalog to support students and readers with diverse interests, from fiction to technical resources.</p>
+        </div>
+        <div>
+           <h3>Student project</h3>
+          <p>This digital library was created as part of a student initiative to combine web development with a love for books — a modern solution for managing reading resources.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mission-image">
+      <img src="{% static 'images/modern_library.jpeg' %}" alt="Cozy reading corner" />
+    </div>
+  </div>
+</section>
+  <footer class="footer">
+    <p>Copyright © 2025 Kalipsis. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Terms and Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </footer>
+</body>
+
+</html>
